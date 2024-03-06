@@ -1,0 +1,61 @@
+program MultiplicationAndAdditionTable;
+
+function DecimalToHex(n: Integer): string;
+const
+  hexDigits: array[0..15] of Char = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F');
+var
+  hexStr: string;
+begin
+  hexStr := '';
+  repeat
+    hexStr := hexDigits[n mod 16] + hexStr;
+    n := n div 16;
+  until n = 0;
+  DecimalToHex := hexStr; // Возвращаем результат присваиванием функции
+end;
+
+procedure PrintHexTable();
+var
+  i, j: Integer;
+begin
+  writeln('Multiplication Table (Hexadecimal):');
+  writeln('----------------------------------');
+  writeln('|   |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  A  |  B  |  C  |  D  |  E  |  F  |');
+  writeln('----------------------------------');
+  for i := 1 to 15 do
+  begin
+    write('| ', DecimalToHex(i), ' |');
+    for j := 1 to 15 do
+    begin
+      write(' ', DecimalToHex(i * j), ' |');
+    end;
+    writeln;
+  end;
+  writeln('----------------------------------');
+end;
+
+procedure PrintHexAdditionTable();
+var
+  i, j: Integer;
+begin
+  writeln('Addition Table (Hexadecimal):');
+  writeln('------------------------------');
+  writeln('|   |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  A  |  B  |  C  |  D  |  E  |  F  |');
+  writeln('------------------------------');
+  for i := 1 to 15 do
+  begin
+    write('| ', DecimalToHex(i), ' |');
+    for j := 1 to 15 do
+    begin
+      write(' ', DecimalToHex(i + j), ' |');
+    end;
+    writeln;
+  end;
+  writeln('------------------------------');
+end;
+
+begin
+  PrintHexTable();
+  writeln;
+  PrintHexAdditionTable();
+end.
